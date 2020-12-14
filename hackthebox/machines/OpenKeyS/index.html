@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="K3nX">
+
+
+
+
+
+<title>OpenKeys</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+
+    <link rel="stylesheet" href="/css/style.css">
+
+
+
+
+    <!-- scripts list from _config.yml -->
+
+    <script src="/js/script.js"></script>
+
+    <script src="/js/tocbot.min.js"></script>
+
+
+
+
+
+
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">K3nX</a></div>
+            <div class="menu navbar-right">
+
+                    <a class="menu-item" href="/archives">Posts</a>
+
+                    <a class="menu-item" href="/category">Categories</a>
+
+                    <a class="menu-item" href="/tag">Tags</a>
+
+
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">K3nX</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+
+                    <a class="menu-item" href="/archives">Posts</a>
+
+                    <a class="menu-item" href="/category">Categories</a>
+
+                    <a class="menu-item" href="/tag">Tags</a>
+
+
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+
+
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+
+
+
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">OpenKeyS</h1>
+
+                <div class="post-meta">
+
+
+
+
+                        <span class="post-category">
+                    Category:
+
+                                <a href="/categories/Hackthebox/">Hackthebox</a>
+
+                        </span>
+
+                </div>
+
+        </header>
+
+        <div class="post-content">
+            <h3 id="OpenKeyS"><a href="#OpenKeyS" class="headerlink"
+                title="OpenKeys"></a>OpenKeys - K3nX</h3><ul>
+              <li>This Machine name is OpenKeys and IP Address is 10.10.10.199</li>
+              <li>This is OpenBSD Machine
+  </li><img src="infocard.png" alt="Sample Image">
+</ul>
+<h3 id="Nmap"><a href="#Nmap" class="headerlink"
+    title="Nmap"></a>Nmap</h3><pre><code class="bash">#cat openkey.nmap
+# Nmap 7.80 scan initiated Wed Jul 29 23:45:58 2020 as: nmap -sSV -O -A -T4 -sC -oN openkey.nmap 10.10.10.199
+Nmap scan report for 10.10.10.199
+Host is up (0.47s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.1 (protocol 2.0)
+| ssh-hostkey:
+|   3072 5e:ff:81:e9:1f:9b:f8:9a:25:df:5d:82:1a:dd:7a:81 (RSA)
+|   256 64:7a:5a:52:85:c5:6d:d5:4a:6b:a7:1a:9a:8a:b9:bb (ECDSA)
+|_  256 12:35:4b:6e:23:09:dc:ea:00:8c:72:20:c7:50:32:f3 (ED25519)
+80/tcp open  http    OpenBSD httpd
+|_http-title: Site doesn't have a title (text/html).
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.80%E=4%D=7/29%OT=22%CT=1%CU=33015%PV=Y%DS=2%DC=T%G=Y%TM=5F21AF2
+OS:5%P=x86_64-pc-linux-gnu)SEQ(SP=F8%GCD=1%ISR=10F%TI=RD%CI=RI%II=RI%TS=22)
+OS:OPS(O1=M54BNNSNW6NNT11%O2=M54BNNSNW6NNT11%O3=M54BNW6NNT11%O4=M54BNNSNW6N
+OS:NT11%O5=M54BNNSNW6NNT11%O6=M54BNNSNNT11)WIN(W1=4000%W2=4000%W3=4000%W4=4
+OS:000%W5=4000%W6=4000)ECN(R=Y%DF=N%T=40%W=4000%O=M54BNNSNW6%CC=N%Q=)T1(R=Y
+OS:%DF=N%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%
+OS:A=S%F=AR%O=%RD=0%Q=)T5(R=Y%DF=N%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y
+OS:%DF=Y%T=40%W=0%S=A%A=S%F=AR%O=%RD=0%Q=)T7(R=N)U1(R=Y%DF=N%T=FF%IPL=38%UN
+OS:=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=S%T=FF%CD=S)
+
+TRACEROUTE (using port 993/tcp)
+HOP RTT       ADDRESS
+1   451.30 ms 10.10.16.1
+2   246.59 ms 10.10.10.199
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</code></pre>
+<p>As nmap result port 22 (ssh) and port 80 (OpenBSD httpd) are open</p>
+<h3 id="Web-Enumeration"><a href="#Web-Enumeration" class="headerlink" title="Web Enumeration"></a>Web Enumeration</h3><ul>
+<li><p>I see this web page <br><img src="web.png" alt="Sample Image"></p>
+</li>
+<li><p>Let's Dir Scanning</p>
+<pre><code class="bash"># gobuster dir -u http://openkeys.htb/ -w /opt/wordlists/directory-list-2.3-medium.txt
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://openkeys.htb/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2020/07/30 00:21:28 Starting gobuster
+===============================================================
+/images (Status: 301)
+/css (Status: 301)
+/includes (Status: 301)
+/js (Status: 301)
+/vendor (Status: 301)
+/fonts (Status: 301)
+===============================================================
+2020/07/30 00:36:38 Finished
+===============================================================
+</code></pre>
+</li>
+<li><p>I found one interesting dir call includes </p>
+</li>
+<img src="include.png" alt="Sample Image"></p>
+<li><p>I found first one auth.php is nothing and the second one is useful for me
+ <br><img src="second.png" alt="Sample Image"></p>
+</li>
+<li>I got username <b>jennifer</b> from this second one
+<h3 id="User"><a href="#User" class="headerlink" title="User"></a>User Shell </h3><ul>
+<li><p>I know this is OpenBSD Machine. In this time, I think auth.php.swp , It
+may be authentication error and I searched OpenBSD Authentication vulnerabality at google</p>
+</li>
+<li><p>After few min searching , I found one useful from packetstorm <a href="https://packetstormsecurity.com/files/155572/Qualys-Security-Advisory-OpenBSD-Authentication-Bypass-Privilege-Escalation.html">
+</a></p>
+</li>
+<li><p>I login with <code class="language-plaintext highlighter-rouge">-schallenge:passwd</code></p>
+<img src="nothing.png" alt="Sample Image">
+</li>
+<li><p>I added the username <b>jennifer</b>with the cookie editor like that
+<br><img src="cookie.png" alt="Sample Image"></p>
+</li>
+<li><p>I login again , Boom I got user <b> jennifer SSH Key </b></p>
+<img src="userkey.png" alt="Sample Image">
+</li>
+<li><p>Login SSH with this key , I got user flag </p>
+<img src="user.png" alt="Sample Image">
+</li>
+</ul>
+<h3 id="Privileges-Escalation-into-root"><a
+    href="#Privileges-Escalation-to-root" class="headerlink" title="Privileges
+    Escalation to root"></a>Privileges Escalation to root</h3><ul>
+<li>After a few time Enumeration , I found this machine is vulnerable to CVE-2019-19522 (OpenBSD local root exploit)</li>
+<li>I found an exploit from github
+<a href="https://github.com/bcoles/local-exploits/blob/master/CVE-2019-19520/openbsd-authroot">Exploit</a>
+</li>
+<li>I uploaded this exploit into htb machine and I run it </li>
+</ul>
+<ul>
+<li><p>After waiting a few sec, Boom I got root</p>
+</li>
+<img src="root.png" alt="Sample Image">
+<li>Finally I got root flag and owned this machine</li>
+</ul>
+        </div>
+
+
+            <section class="post-copyright">
+
+
+
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright K3nX (c) 2019</span>
+                    </p>
+
+
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+
+
+            </section>
+
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+
+
+                        <a href="/tags/Hackthebox/"># Hackthebox</a>
+
+
+
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+
+            <a class="prev" rel="prev" href="/hackthebox/machines/sauna/">Sauna</a>
+
+
+            <a class="next" rel="next" href="/">/</a>
+
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© K3nX </span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
